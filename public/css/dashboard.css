@@ -1,0 +1,250 @@
+.container {
+  max-width: 1140px;
+  margin: 0px auto;
+  padding: 1rem;
+}
+.container .buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.container .buttons .link {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  padding: 5px 10px;
+}
+
+.container .buttons .red {
+  background-color: red;
+  box-shadow: 0px 0px 5px red;
+}
+.container .buttons .green {
+  background-color: green;
+  box-shadow: 0px 0px 5px green;
+}
+.container .services {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.result-section {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2rem;
+  margin: 2rem 0;
+}
+
+.result-section .card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-shadow: 0px 0px 3px black;
+  box-shadow: 0px 0px 3px black;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.result-section .card .card-header img {
+  width: 100%;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.result-section .card .card-body {
+  padding: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.result-section .card .card-body .name {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.result-section .card .card-body .price,
+.result-section .card .card-body .quantity {
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.result-section .card .card-body button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #cb202d;
+  color: white;
+  text-align: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  align-self: center;
+  margin: 0.5rem 0;
+}
+
+.result-section .card .card-body .yellow {
+  color: black;
+  background: greenyellow;
+  border: 1px solid black;
+}
+
+@media only screen and (max-width: 768px) {
+  header .nav {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  header .nav .nav-brand {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    margin-left: 20px;
+  }
+  header .nav .toggle-collapse {
+    display: initial;
+  }
+  header .nav .nav-items {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-left: 1rem;
+  }
+  main {
+    margin: 2rem auto;
+    -ms-grid-columns: 30% 70%;
+    grid-template-columns: 30% 70%;
+  }
+  .result-section {
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+  .result-section .card .card-body .name,
+  .result-section .card .card-body .price,
+  .result-section .card .card-body .quantity {
+    font-size: 1.1rem;
+  }
+}
+
+@media only screen and (max-width: 572px) {
+  main {
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+  }
+  main .left-section {
+    margin: 1rem auto;
+    width: 70vw;
+  }
+  .result-section {
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+  }
+  .result-section .card .card-body .name,
+  .result-section .card .card-body .price,
+  .result-section .card .card-body .quantity {
+    font-size: 1.1rem;
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal .modal-content {
+  background-color: #f4f4f4;
+  margin: 2rem auto auto auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -webkit-box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2),
+    0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  -webkit-animation-name: modalopen;
+  animation-name: modalopen;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.modal .modal-content .modal-header {
+  border-bottom: 0.5px solid #ccc;
+  background: #428bca;
+  padding: 1rem;
+  color: #fff;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.modal .modal-content .modal-header h1 {
+  display: inline-block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  padding: 0;
+  margin: 0;
+}
+
+.modal .modal-content .modal-header span {
+  float: right;
+  cursor: pointer;
+  font-size: 3rem;
+  -webkit-transition: 0.1s all ease-in-out;
+  transition: 0.1s all ease-in-out;
+}
+
+.modal .modal-content .modal-header span:hover,
+.modal .modal-content .modal-header span:focus {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  text-decoration: none;
+}
+
+.modal .modal-content .modal-body {
+  height: 100%;
+  padding: 20px 20px 8px 20px;
+  text-align: center;
+}
+
+.modal .modal-content .modal-body p {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-top: 0;
+}
+.modal .modal-content .modal-body p #insert_here {
+  font-weight: 600;
+}
+.modal .modal-content .modal-body .form {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+.modal .modal-content .modal-body .form label {
+  align-self: flex-start;
+  font-size: 1.4rem;
+}
+.modal .modal-content .modal-body .form input {
+  font-size: 1.5rem;
+}

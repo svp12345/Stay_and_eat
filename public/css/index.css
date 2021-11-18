@@ -1,0 +1,159 @@
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: #f3f3f3;
+}
+
+.collapse {
+  height: 12rem !important;
+}
+
+header {
+  background-color: #cb202d;
+  height: 0rem;
+  min-height: 4rem;
+  overflow: hidden;
+  -webkit-transition: height 0.3s ease-in-out;
+  transition: height 0.3s ease-in-out;
+  padding: 0 auto;
+}
+
+header .nav {
+  min-height: 10rem;
+  height: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1rem;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+header .nav .nav-brand {
+  margin: 0px;
+  padding: 0px;
+}
+
+header .nav .nav-brand a {
+  text-decoration: none;
+  font-size: 2rem;
+  color: white;
+  line-height: 34px;
+}
+
+header .nav .toggle-collapse {
+  position: absolute;
+  right: 10%;
+  display: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+header .nav .toggle-collapse .toggle-icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .nav .toggle-collapse .toggle-icons a {
+  color: white;
+}
+
+header .nav .nav-items {
+  list-style-type: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+}
+
+header .nav .nav-items .nav-link {
+  margin: 0 1rem;
+}
+
+header .nav .nav-items .nav-link a {
+  font-size: 1.6rem;
+  color: white;
+  text-decoration: none;
+  line-height: 35px;
+}
+
+main {
+  max-width: 1140px;
+  margin: 0px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .container {
+  background-color: white;
+  padding: 2rem 2rem 3rem 2rem;
+  margin: 4rem;
+  text-align: center;
+  width: 80%;
+  border: none;
+  -webkit-box-shadow: 0px 0px 5px #555555;
+          box-shadow: 0px 0px 5px #555555;
+}
+
+main .container h1 {
+  font-size: 3rem;
+}
+
+main .container h3 {
+  font-size: 2.5rem;
+}
+
+main .container form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .container form input[type="text" i] {
+  font-size: 2rem;
+}
+
+main .container form input[type="submit"] {
+  font-size: 1.5rem;
+  padding: 0.4rem 1rem;
+  background-color: white;
+  border: 0.1px solid #cb202d;
+  color: #cb202d;
+}
+/*# sourceMappingURL=index.css.map */

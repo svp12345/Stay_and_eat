@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/00ddca2673.js" crossorigin="anonymous"></script>
+    <title>Stay and Eat</title>
+    <style>
+        html,
+        body {
+            margin: 0px;
+            padding: 0px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            font-family: "Roboto", sans-serif;
+        }
+
+        body {
+            background-color: #f3f3f3;
+        }
+
+        .collapse {
+            height: 12rem !important;
+        }
+
+        header {
+            background-color: #cb202d;
+            height: 0rem;
+            min-height: 4rem;
+            overflow: hidden;
+            -webkit-transition: height 0.3s ease-in-out;
+            transition: height 0.3s ease-in-out;
+            padding: 0 auto;
+        }
+
+        header .nav {
+            min-height: 10rem;
+            height: 4rem;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            padding: 1rem;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        header .nav .nav-brand {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        header .nav .nav-brand a {
+            text-decoration: none;
+            font-size: 2rem;
+            color: white;
+            line-height: 34px;
+        }
+
+        header .nav .toggle-collapse {
+            position: absolute;
+            right: 10%;
+            display: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        header .nav .toggle-collapse .toggle-icons {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+            justify-content: flex-end;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        header .nav .toggle-collapse .toggle-icons a {
+            color: white;
+        }
+
+        header .nav .nav-items {
+            list-style-type: none;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        header .nav .nav-items .nav-link {
+            margin: 0 1rem;
+        }
+
+        header .nav .nav-items .nav-link a {
+            font-size: 1.6rem;
+            color: white;
+            text-decoration: none;
+            line-height: 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="/">Stay and Eat</a>
+            </div>
+            <div class="toggle-collapse">
+                <div class="toggle-icons">
+                    <a href="#"><i class="fas fa-bars"></i></a>
+                </div>
+            </div>
+            <ul class="nav-items">
+                <li class="nav-link">
+                    <a href="/about">About us</a>
+                </li>
+                <li class="nav-link">
+                    <a id="login" href="/users/login">Log in</a>
+                </li>
+                <li class="nav-link">
+                    <a href="/cart">Cart</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <%-body %>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(() => {
+            $nav = $('.header');
+            $toggleCollapse = $('.toggle-collapse');
+            $toggleCollapse.click(() => {
+                $nav.toggleClass('collapse');
+            });
+        });
+    </script>
+</body>
+
+</html>

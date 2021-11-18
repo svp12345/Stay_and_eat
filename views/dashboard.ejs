@@ -1,0 +1,160 @@
+<head>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<div class="container">
+    <div class="heading">
+        <h1>Dashboard</h1>
+    </div>
+    <input id="user_name" type="text" value="<%= typeof user_name != 'undefined' ? user_name : '' %>" />
+    <div class="buttons">
+        <a class="link green" href="/create">Create A Service</a>
+        <a class="link red" href="/users/logout">Logout</a>
+    </div>
+    <div class="services">
+        <h1>Your Services</h1>
+        <div class="message"></div>
+        <div class="result-section">
+        </div>
+    </div>
+    <div id="simpleModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="heading">Update</h1>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Update The Service: <span id="insert_here"></span></p>
+                <div class="form">
+                    <label for="new_service_name">Name</label>
+                    <input type="text" id="new_service_name" name="new_service_name"
+                        value="<%= typeof new_service_name != 'undefined' ? new_service_name : '' %>" />
+                    <label for="new_service_name">Location</label>
+                    <input type="text" id="new_location_name" name="new_location_name"
+                        value="<%= typeof new_location_name != 'undefined' ? new_location_name : '' %>" />
+                    <label for="new_service_name">Menu</label>
+                    <input type="text" id="new_menu" name="new_menu"
+                        value="<%= typeof new_menu != 'undefined' ? new_menu : '' %>" />
+                    <label for="new_service_name">Location</label>
+                    <input type="text" id="new_price" name="new_price"
+                        value="<%= typeof new_price != 'undefined' ? new_price : '' %>" />
+                    <button id="submit-update">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var new_service_name = '';
+    const user_name = document.querySelector('#user_name');
+    const login = document.querySelector('#login');
+    login.setAttribute('href', '/users/logout');
+    login.innerText = 'Log Out';
+    user_name.style.display = "none";
+    const user = user_name.value;
+    fetch('http://localhost:5000/getByUser/' + user)
+        .then(response => response.json())
+        .then(data => loadHTML(data['data']))
+        .then(() => {
+            console.log('started');
+            startTheDelete();
+        });
+
+    function loadHTML(data) {
+        const resultSection = document.querySelector('.result-section');
+        const message = document.querySelector('.message');
+        console.log(data.length);
+        if (data.length == 0) {
+            message.style.textAlign = 'center';
+            message.innerHTML = '<h1 style="font-size:2rem;font-weight:500;">No services found. Sorry!</h1>';
+            return;
+        }
+        let resultSectionHTML = '';
+        data.forEach(({ id, service_name, location, menu, price }) => {
+            resultSectionHTML += `
+            <div class="card" id=${id}>
+                <div class="card-header">
+                    <img src="/img/dibba3.jpg" alt="dibba">
+                </div>
+                <div class="card-body cardBody">
+                    <p class="name">Name: ${service_name}</p>
+                    <p class="quantity">Menu: ${menu}</p>
+                    <p class="price">Price: ₹ ${price}</p>
+                    <button class="update-btn" data-id="${id}" data-name=${service_name}>Update</button>
+                    <button class="delete-btn" data-id="${id}">Delete</button>
+                </div>
+            </div>
+            `
+        })
+        resultSection.innerHTML = resultSectionHTML;
+        console.log('done');
+    };
+    // console.log('done2');
+    function startTheDelete() {
+        console.log('deletion began');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        var selectedService = document.querySelector('.result-section').addEventListener('click', (e) => {
+            if (e.target.className === 'delete-btn') {
+                console.log(e.target);
+                deleteServiceById(e.target.dataset.id);
+            }
+            if (e.target.className === 'update-btn') {
+                updateServiceById(e.target.dataset.id, e.target.dataset.name);
+            }
+        })
+    });
+
+    function deleteServiceById(id) {
+        fetch('http://localhost:5000/delete/' + id, {
+            method: 'DELETE'
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success == true) {
+                    location.reload();
+                }
+            });
+    }
+
+    function updateServiceById(id, name_of_service) {
+        const modal = document.querySelector('#simpleModal');
+        const closeModal = document.querySelector('.close-modal');
+        modal.style.display = 'block';
+        const service_id = id;
+        new_service_name = name_of_service;
+        document.querySelector('#insert_here').innerText = name_of_service;
+        console.log(new_service_name);
+        closeModal.addEventListener('click', (e) => {
+            modal.style.display = 'none';
+        });
+        document.querySelector('#submit-update').addEventListener('click', () => {
+            const new_name = document.querySelector('#new_service_name').value;
+            const new_location = document.querySelector('#new_location_name').value;
+            const new_menu = document.querySelector('#new_menu').value;
+            const new_price = document.querySelector('#new_price').value;
+
+            console.log(new_name, new_location, new_menu, new_price);
+            fetch('http://localhost:5000/update', {
+                method: 'PATCH',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: service_id,
+                    new_name: new_name,
+                    new_location: new_location,
+                    new_menu: new_menu,
+                    new_price: new_price
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('updated successfully!');
+                        location.reload();
+                    }
+                })
+        })
+    }
+</script>

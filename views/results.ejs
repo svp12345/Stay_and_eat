@@ -1,0 +1,55 @@
+<head>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<div class="container">
+    <form>
+        <input type="text" placeholder="Enter location" maxlength="100" id="location-search">
+        <br>
+        <button id="search-btn">Submit</button>
+    </form>
+</div>
+<main id="main" style="display: none;">
+    <div class="right-section">
+        <h3>Top Picks</h3>
+        <div class="result-section">
+        </div>
+    </div>
+</main>
+<script>
+    const search = document.querySelector('#search-btn');
+    const location_search = document.querySelector('#location-search');
+    search.addEventListener('click', (event) => {
+        event.preventDefault();
+        let search_phrase = location_search.value;
+        console.log(search_phrase);
+        fetch("http://localhost:5000/search/" + location_search.value)
+            .then(response => response.json())
+            .then(data => loadHTML(data['data']));
+    });
+
+    function loadHTML(data) {
+        const resultSection = document.querySelector('.result-section');
+        const main = document.querySelector('#main');
+        if (data.length === 0) {
+            main.innerHTML = '<h1 style="text-align:center;font-size:2rem;font-weight:500;">No data found. Sorry!</h1>'
+        }
+        let resultSectionHTML = '';
+        data.forEach(({ id, service_name, location, menu, price }) => {
+            resultSectionHTML += `
+            <div class="card" id=${id}>
+                <div class="card-header">
+                    <img src="/img/dibba3.jpg" alt="dibba">
+                </div>
+                <div class="card-body">
+                    <p class="name">Name: ${service_name}</p>
+                    <p class="quantity">Menu: ${menu}</p>
+                    <p class="price">Price: ₹ ${price}</p>
+                    <button>Add To Cart</button>
+                </div>
+            </div>
+            `
+        })
+        main.style.display = 'initial';
+        resultSection.innerHTML = resultSectionHTML;
+    }
+</script>
